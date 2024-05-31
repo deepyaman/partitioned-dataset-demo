@@ -1,0 +1,21 @@
+# Here you can define all your data sets by using simple YAML syntax.
+#
+# Documentation for this file format can be found in "The Data Catalog"
+# Link: https://docs.kedro.org/en/stable/data/data_catalog.html
+emails:
+  type: partitions.PartitionedDataset
+  path: data/01_raw/emails
+  dataset: email.EmailMessageDataset
+  filename_suffix: '.eml'
+
+capitalized_emails:
+  type: partitions.PartitionedDataset
+  path: data/03_primary/capitalized_emails
+  dataset: email.EmailMessageDataset
+  filename_suffix: '.eml'
+
+tokens:
+  type: partitions.PartitionedDataset
+  path: data/03_primary/tokens
+  dataset: json.JSONDataset
+  filename_suffix: '.json'
