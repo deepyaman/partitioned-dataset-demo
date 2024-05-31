@@ -6,9 +6,13 @@ from email.message import EmailMessage
 
 def extract_content(
     capitalized_emails: dict[str, Callable[[], EmailMessage]]
-) -> dict[str, Callable[[], str]]:
+) -> dict[str, str]:
+    contents = {}
+
     for partition_id, partition_load_func in capitalized_emails.items():
-        yield {partition_id: partition_load_func().get_content()}
+        contents[partition_id] = partition_load_func().get_content()
+
+    return contents
 
 
 def tokenize(contents: dict[str, str]) -> dict[str, Any]:
